@@ -2,15 +2,14 @@ package frc.robot.Commands;
 
 import java.util.function.Supplier;
 
-import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Subsystems.submecos;
 
 public class conmecos extends Command {
     submecos mecosmodule;
-    Supplier<Double> x, y, turn, theta, power;
-
-    XboxController joytick;
+    Supplier<Double> x, y, turn;
+    Joystick driverjoytick;
     
   
   
@@ -27,22 +26,34 @@ public class conmecos extends Command {
     
     }
 
+    @Override
+    public void initialize(){
 
+    }
 
     @Override
     public void execute(){
 
 
-        double x = joytick.getRawAxis(0);
-        double y = -joytick.getRawAxis(1);
-        double turn = joytick.getRawAxis(4);
+        double x = driverjoytick.getRawAxis(0);
+        double y = -driverjoytick.getRawAxis(1);
+        double turn = driverjoytick.getRawAxis(4);
 
-        double theta = Math.atan2(y, x);
         double power = Math.hypot(x, y);
 
-        mecosmodule.driveMecos(theta, power, turn);
-        
+        if (power < 0.001) {
+            return;
+        }
 
+        double theta = Math.atan2(y, x);
+
+        mecosmodule.driveMecos(theta, power, turn);
+
+    }
+
+    @Override
+    public boolean isFinished(){
+        return true;
     }
 
 
