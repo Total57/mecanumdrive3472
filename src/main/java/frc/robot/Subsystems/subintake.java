@@ -13,10 +13,12 @@ public class subintake extends SubsystemBase {
     private DoubleSolenoid Piston;
     private int intkid = intakeconst.m_intake;
     private int indxid = intakeconst.m_index;
+    private int forwardid = intakeconst.sforwardchn;
+    private int reversedid = intakeconst.sreversedchn;
 
-    public subintake(int m_index, int m_intake, DoubleSolenoid Piston){
+    public subintake(int m_index, int m_intake, int sforwardchn, int sreversedchn){
 
-        Piston  = new DoubleSolenoid(PneumaticsModuleType.REVPH, intakeconst.sforwardchn, intakeconst.sreversedchn);
+        Piston  = new DoubleSolenoid(PneumaticsModuleType.REVPH, forwardid, reversedid);
         intake = new CANSparkMax(intkid, MotorType.kBrushless);
         index = new CANSparkMax(indxid, MotorType.kBrushless);
 
@@ -24,37 +26,25 @@ public class subintake extends SubsystemBase {
 
     }
 
-    //funcoiones intake
-    public void setintake(){
-        Piston.set(DoubleSolenoid.Value.kReverse);
-        Piston.close();
-    }
-
-    public void upintake (){
-        intake.set(0.7);
+    public void velocities(double speed){
+        intake.set(speed);
         Piston.toggle();
+
     }
 
-    public void stopintake(){
-        intake.set(0);
+    //funcoiones intake
+    public void pistoninit(){
         Piston.set(DoubleSolenoid.Value.kReverse);
+       
     }
 
-    public void emergency(){
-        intake.set(0);
-    }
-
+  
     //funciones index 
 
-    public void onindex(){
-        index.set(0.5);
+    public void setoutakespeed(double indexspeed){
+        index.set(indexspeed);
     }
-
-    public void offindex(){
-        index.set(0);
-    }
-
-   //funcoines reversa
+   //funciones reversa
 
    public void reversed(){
         index.set(-0.5);

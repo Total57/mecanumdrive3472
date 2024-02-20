@@ -14,7 +14,6 @@ public final class constants {
 
         public static final int m_intake = 4;
         public static final int m_index = 9;
-        public static final int pwmsolenoid = 0;
         public static final int sforwardchn = 1;
         public static final int sreversedchn = 2;
   
@@ -24,9 +23,17 @@ public final class constants {
     public static final class outakeconst{
 
         public static final int outid = 7;
+        public static final int outid2 = 8;
+        public static final int posoutid = 2;
+        public static final int posoutid2 =6;
+        
         //declarar puertos de encoder
 
-        
+    }
+
+    public static final class colgConst{
+        public static final int colgId = 10;
+        public static final int colg2Id = 11;
     }
     
 }

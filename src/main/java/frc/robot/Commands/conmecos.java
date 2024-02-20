@@ -8,52 +8,61 @@ import frc.robot.Subsystems.submecos;
 
 public class conmecos extends Command {
     submecos mecosmodule;
-    Supplier<Double> x, y, turn;
+   // Supplier<Double> x, y, turn;
+    Supplier<Double>xSpdfunction,ySpdFunction,turningSpdFunction;
     Joystick driverjoytick;
     
   
-  
-
-    public conmecos(submecos mecosmodule, Supplier<Double> x, Supplier<Double> y, 
-                Supplier<Double> turn){
+    public conmecos(submecos mecosmodule, Supplier<Double> xSpdfunction, Supplier<Double> ySpdfunction, 
+                Supplier<Double> turningSpdfunction){
                 
-        addRequirements(mecosmodule);        
+               
         this.mecosmodule = mecosmodule;
+
+        this.xSpdfunction = xSpdfunction;
+        this.ySpdFunction = ySpdfunction;
+        this.turningSpdFunction = turningSpdfunction;
+
+        addRequirements(mecosmodule); 
             
-        this.x = x;
+      /*   this.x = x;
         this.y = y;
-        this.turn = turn;
+        this.turn = turn; */
     
     }
 
     @Override
-    public void initialize(){
-
-    }
+    public void initialize(){}
 
     @Override
     public void execute(){
 
+        double x_value = xSpdfunction.get();
+        double y_value = ySpdFunction.get();
+        double turn_value = turningSpdFunction.get();
 
-        double x = driverjoytick.getRawAxis(0);
+
+       /* double x = driverjoytick.getRawAxis(0);
         double y = -driverjoytick.getRawAxis(1);
-        double turn = driverjoytick.getRawAxis(4);
+        double turn = driverjoytick.getRawAxis(4); */ 
 
-        double power = Math.hypot(x, y);
+        double power = Math.hypot(x_value, y_value);
+
 
         if (power < 0.001) {
-            return;
+            mecosmodule.driveMecos(0,0,0);
         }
 
-        double theta = Math.atan2(y, x);
+        
+        double theta = Math.atan2(y_value, x_value);
 
-        mecosmodule.driveMecos(theta, power, turn);
+        mecosmodule.driveMecos(theta, power, turn_value);
 
     }
 
     @Override
     public boolean isFinished(){
-        return true;
+        return false;
     }
 
 
