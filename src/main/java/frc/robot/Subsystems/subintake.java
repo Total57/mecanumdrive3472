@@ -10,19 +10,18 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 public class subintake extends SubsystemBase {
 
     CANSparkMax intake, index;
-    private DoubleSolenoid Piston;
+    DoubleSolenoid Piston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, intakeconst.sforwardchn, intakeconst.sreversedchn);
     private int intkid = intakeconst.m_intake;
     private int indxid = intakeconst.m_index;
-    private int forwardid = intakeconst.sforwardchn;
-    private int reversedid = intakeconst.sreversedchn;
+
 
     public subintake(int m_index, int m_intake, int sforwardchn, int sreversedchn){
 
-        Piston  = new DoubleSolenoid(PneumaticsModuleType.REVPH, forwardid, reversedid);
+        
         intake = new CANSparkMax(intkid, MotorType.kBrushless);
         index = new CANSparkMax(indxid, MotorType.kBrushless);
 
-        Piston.close();
+        
 
     }
 

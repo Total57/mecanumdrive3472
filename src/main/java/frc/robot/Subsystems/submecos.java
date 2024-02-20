@@ -60,9 +60,9 @@ public class submecos extends SubsystemBase{
                 
             }
 
-            FrentIzq.set(fIv);
+            FrentIzq.set(-fIv);
             FrentDer.set(fDv);
-            AtrasIzq.set(aIv);
+            AtrasIzq.set(-aIv);
             AtrasDer.set(aDv);
 
     }

@@ -16,7 +16,6 @@ import frc.robot.Subsystems.subintake;
 import frc.robot.Subsystems.submecos;
 import frc.robot.Subsystems.suboutake;
 
-
 public class RobotContainer {
 
   private final submecos mecosmodule = new submecos(constants.driveconst.fi_id,
@@ -38,8 +37,9 @@ public class RobotContainer {
                                                   constants.intakeconst.sreversedchn
   );
 
-  Joystick driverjoytick = new Joystick(0);
-  Joystick mechjoytick = new Joystick(1);
+  public Joystick driverjoytick = new Joystick(0);
+  public Joystick mechjoytick = new Joystick(1);
+ 
 
   double MGIzq = driverjoytick.getRawAxis(2);
   double MGDer = driverjoytick.getRawAxis(3);
@@ -53,7 +53,7 @@ public class RobotContainer {
   private final JoystickButton MBder = new JoystickButton(mechjoytick, 5);
 
 
-  boolean buttval = mechjoytick.getRawButton(o);
+  boolean buttval = mechjoytick.getRawButton(0);
   
 
   public RobotContainer() {
@@ -66,35 +66,14 @@ public class RobotContainer {
       
     });
 
-
     configureBindings();
-
 
   }
 
   private void configureBindings() { 
     //outake
     MBizq.whileTrue(new comout(outake, 0.3));
-    MBder.whileTrue(new comout(outake, 0.9));
-
-    
-    int flag ;
-    
-
-    while (buttval == true){
-
-      flag = flag + 1;
-
-    }
-
-    int b = flag%2;
-
-    if (b != 0){
-     // return new comintake(intake, 0.5);
-    }
-
-
-
+    MBder.whileTrue(new comout(outake, 0.9)); 
     
   }
 

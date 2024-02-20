@@ -1,33 +1,25 @@
 package frc.robot.Commands;
 
 import java.util.function.Supplier;
+import java.lang.Math;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Subsystems.submecos;
 
 public class conmecos extends Command {
     submecos mecosmodule;
-   // Supplier<Double> x, y, turn;
-    Supplier<Double>xSpdfunction,ySpdFunction,turningSpdFunction;
-    Joystick driverjoytick;
-    
+   Supplier<Double> x, y, turn;
   
-    public conmecos(submecos mecosmodule, Supplier<Double> xSpdfunction, Supplier<Double> ySpdfunction, 
-                Supplier<Double> turningSpdfunction){
+    public conmecos(submecos mecosmodule, Supplier<Double> x, Supplier<Double> y, 
+                Supplier<Double> turn){
                 
                
         this.mecosmodule = mecosmodule;
-
-        this.xSpdfunction = xSpdfunction;
-        this.ySpdFunction = ySpdfunction;
-        this.turningSpdFunction = turningSpdfunction;
-
-        addRequirements(mecosmodule); 
-            
-      /*   this.x = x;
+     
+        this.x = x;
         this.y = y;
-        this.turn = turn; */
+        this.turn = turn;
+        addRequirements(mecosmodule); 
     
     }
 
@@ -37,26 +29,19 @@ public class conmecos extends Command {
     @Override
     public void execute(){
 
-        double x_value = xSpdfunction.get();
-        double y_value = ySpdFunction.get();
-        double turn_value = turningSpdFunction.get();
+        double x_pos = x.get();
+        double y_pos = y.get();
+        double turn_pos = turn.get();  
 
-
-       /* double x = driverjoytick.getRawAxis(0);
-        double y = -driverjoytick.getRawAxis(1);
-        double turn = driverjoytick.getRawAxis(4); */ 
-
-        double power = Math.hypot(x_value, y_value);
-
+        double power = Math.hypot(x_pos, y_pos);
 
         if (power < 0.001) {
-            mecosmodule.driveMecos(0,0,0);
+            mecosmodule.driveMecos(0,0,turn_pos);
         }
 
-        
-        double theta = Math.atan2(y_value, x_value);
+        double theta = Math.atan2(y_pos, x_pos);
 
-        mecosmodule.driveMecos(theta, power, turn_value);
+        mecosmodule.driveMecos(theta, power, turn_pos);
 
     }
 
