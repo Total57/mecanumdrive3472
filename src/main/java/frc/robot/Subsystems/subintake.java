@@ -12,23 +12,22 @@ public class subintake extends SubsystemBase {
     CANSparkMax intake, index;
     DoubleSolenoid Piston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, intakeconst.sforwardchn, intakeconst.sreversedchn);
     private int intkid = intakeconst.m_intake;
-    private int indxid = intakeconst.m_index;
+    
 
 
-    public subintake(int m_index, int m_intake, int sforwardchn, int sreversedchn){
-
-        
+    public subintake(){
         intake = new CANSparkMax(intkid, MotorType.kBrushless);
-        index = new CANSparkMax(indxid, MotorType.kBrushless);
-
-        
-
+       
     }
 
     public void velocities(double speed){
         intake.set(speed);
-        Piston.toggle();
+        
 
+    }
+
+    public void pistonact(){
+        Piston.toggle();
     }
 
     //funcoiones intake
@@ -36,17 +35,20 @@ public class subintake extends SubsystemBase {
         Piston.set(DoubleSolenoid.Value.kReverse);
        
     }
+    public void intakeinit(){
+        intake.set(0);
+    }
+
+    
 
   
     //funciones index 
 
-    public void setindexspeed(double indexspeed){
-        index.set(indexspeed);
-    }
+    
    //funciones reversa
 
    public void reversed(){
-        index.set(-0.5);
+        
         intake.set(-0.5);
    }
 

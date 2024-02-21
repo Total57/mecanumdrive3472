@@ -19,11 +19,13 @@ public class comintake extends Command{
     public void initialize(){
         
         intake.pistoninit();
+        intake.intakeinit();
     }
 
     @Override
     public void execute(){
         intake.velocities(speed);
+        intake.pistonact();
     }
 
     @Override

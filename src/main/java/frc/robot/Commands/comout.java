@@ -6,15 +6,15 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Subsystems.suboutake;
 
 public class comout extends Command{
-    suboutake outake;
+    suboutake moutake;
     Supplier<Double>speed, speed2;
 
-    public comout(suboutake outake, Supplier<Double>speed, Supplier<Double>speed2){
+    public comout(suboutake moutake, Supplier<Double>speed, Supplier<Double>speed2){
         
-        this.outake = outake;
+        this.moutake = moutake;
         this.speed = speed;
         this.speed2 = speed2;
-        addRequirements(outake);        
+        addRequirements(moutake);        
 
     }
 
@@ -28,18 +28,18 @@ public class comout extends Command{
        double gatder = speed.get();
        double gatizq = speed2.get();
 
-       if (gatder > 0.001 && gatizq < 0.001){
+       if (gatder > 0.3 && gatizq < 0.001){
         
-        outake.setoutakespeed(0.9);
+        moutake.setoutakespeed(0.2); //cambiar a vel rapida despues(0.9)
        }
        
        else if (gatder < 0.001 && gatizq > 0.001){
 
-        outake.setoutakespeed(0.3);}
+        moutake.setoutakespeed(0.1);}
 
        else{
 
-        outake.setoutakespeed(0);}
+        moutake.setoutakespeed(0);}
 
        }
 

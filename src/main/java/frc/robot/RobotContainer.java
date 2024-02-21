@@ -9,46 +9,30 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Commands.comindex;
 import frc.robot.Commands.comintake;
 import frc.robot.Commands.comout;
 import frc.robot.Commands.composout;
 import frc.robot.Commands.conmecos;
+import frc.robot.Subsystems.subindex;
 import frc.robot.Subsystems.subintake;
 import frc.robot.Subsystems.submecos;
 import frc.robot.Subsystems.suboutake;
+import frc.robot.Subsystems.subpos;
 
 public class RobotContainer {
 
-  private final submecos mecosmodule = new submecos(constants.driveconst.fi_id,
-                                                    constants.driveconst.fd_id,
-                                                    constants.driveconst.ai_id,
-                                                    constants.driveconst.ad_id);
+  private final submecos mecosmodule = new submecos();
 
-  private final suboutake outake = new suboutake(
-                                                  constants.outakeconst.outid, 
-                                                  constants.outakeconst.outid2,
-                                                  constants.outakeconst.posoutid,
-                                                  constants.outakeconst.posoutid2
-  );
+  private final suboutake moutake = new suboutake();
 
-  private final suboutake posoutake = new suboutake(constants.outakeconst.outid, 
-                                                  constants.outakeconst.outid2,
-                                                  constants.outakeconst.posoutid,
-                                                  constants.outakeconst.posoutid2);
+  private final subpos posoutake = new subpos();
 
-  private final subintake intake = new subintake(
-                                                  constants.intakeconst.m_index,
-                                                  constants.intakeconst.m_intake,
-                                                  constants.intakeconst.sforwardchn,
-                                                  constants.intakeconst.sreversedchn
-  );
+  private final subintake intake = new subintake();
 
-  private final subintake index = new subintake(constants.intakeconst.m_index,
-                                                  constants.intakeconst.m_intake,
-                                                  constants.intakeconst.sforwardchn,
-                                                  constants.intakeconst.sreversedchn);
+  private final subindex index = new subindex();
 
 
   public Joystick driverjoytick = new Joystick(0);
@@ -66,9 +50,7 @@ public class RobotContainer {
   private final JoystickButton MBizq = new JoystickButton(mechjoytick, 4);
   private final JoystickButton MBder = new JoystickButton(mechjoytick, 5);
 
-
   boolean buttval = mechjoytick.getRawButton(0);
-  
 
   public RobotContainer() {
 
@@ -80,7 +62,7 @@ public class RobotContainer {
       
     });
 
-    outake.setDefaultCommand(new comout(outake,
+    moutake.setDefaultCommand(new comout(moutake,
     ()-> mechjoytick.getRawAxis(3),
     ()-> mechjoytick.getRawAxis(2) ){
 
@@ -98,12 +80,13 @@ public class RobotContainer {
 
   private void configureBindings() { 
 
-    My.whileTrue(new InstantCommand(()-> intake.reversed()));
+    My.whileTrue(new ParallelCommandGroup(new InstantCommand(()-> intake.reversed()), new comindex(index, -0.5)));
+  
     //index
-    Mx.whileTrue(new comindex(index, 0.5));
+    Mx.toggleOnTrue(new comindex(index, 0.5));
 
     //emergencia
-    Momorgencia.whileTrue(new InstantCommand(()-> intake.stop()));
+    //Momorgencia.toggleOnTrue(new InstantCommand(()-> intake.stop()));
 
    
 

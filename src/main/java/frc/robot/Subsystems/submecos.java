@@ -25,7 +25,7 @@ public class submecos extends SubsystemBase{
     
     
 
-    public submecos( int fi_id, int fd_id, int ai_id, int ad_id){
+    public submecos(){
         FrentIzq = new CANSparkMax(frenteIzquid, MotorType.kBrushless);
         FrentDer = new CANSparkMax(FrenteDerid, MotorType.kBrushless);
         AtrasIzq = new CANSparkMax(AtrasIzqid, MotorType.kBrushless);
