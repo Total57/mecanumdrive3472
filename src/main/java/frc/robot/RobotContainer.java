@@ -50,15 +50,17 @@ public class RobotContainer {
   private final JoystickButton MBizq = new JoystickButton(mechjoytick, 4);
   private final JoystickButton MBder = new JoystickButton(mechjoytick, 5);
 
+
   boolean buttval = mechjoytick.getRawButton(0);
+  
 
   public RobotContainer() {
 
     mecosmodule.setDefaultCommand(new conmecos(mecosmodule,
 
-      () -> driverjoytick.getRawAxis(0),
-      () -> driverjoytick.getRawAxis(1),
-      () -> driverjoytick.getRawAxis(4)) {
+      ()-> driverjoytick.getRawAxis(0),
+      ()-> driverjoytick.getRawAxis(1),
+      ()-> driverjoytick.getRawAxis(4)) {
       
     });
 
@@ -74,16 +76,22 @@ public class RobotContainer {
     
     });
 
+    index.setDefaultCommand(new comindex(index,
+
+      ()-> mechjoytick.getRawAxis(5)) {
+      
+    });
+
     configureBindings();
 
   }
 
   private void configureBindings() { 
 
-    My.whileTrue(new ParallelCommandGroup(new InstantCommand(()-> intake.reversed()), new comindex(index, -0.5)));
+   // My.whileTrue(new ParallelCommandGroup(new InstantCommand(()-> intake.reversed()), new comindex(index, -0.5)));
   
     //index
-    Mx.toggleOnTrue(new comindex(index, 0.5));
+   // Mx.toggleOnTrue(new comindex(index, 0.5));
 
     //emergencia
     //Momorgencia.toggleOnTrue(new InstantCommand(()-> intake.stop()));

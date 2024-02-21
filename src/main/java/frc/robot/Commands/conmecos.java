@@ -29,7 +29,7 @@ public class conmecos extends Command {
     @Override
     public void execute(){
 
-        double x_pos =  - x.get();
+        double x_pos = - x.get();
         double y_pos = y.get();
         double turn_pos = turn.get();  
 

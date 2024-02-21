@@ -1,13 +1,15 @@
 package frc.robot.Commands;
 
+import java.util.function.Supplier;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Subsystems.subindex;
 
 public class comindex extends Command{
     subindex index;
-    private final double speedy;
+    Supplier<Double> speedy;
 
-    public comindex(subindex index, double speedy){
+    public comindex(subindex index, Supplier<Double> speedy){
 
         this.index = index;
         this.speedy = speedy;
@@ -17,17 +19,18 @@ public class comindex extends Command{
 
     @Override
     public void initialize(){
-        index.setindexspeed(0);
+        
     }
 
     @Override
     public void execute(){
-        index.setindexspeed(speedy);
+        double holafeliz = speedy.get();
+        index.setindexspeed(holafeliz);
     }
 
     @Override
     public boolean isFinished(){
-        index.setindexspeed(0);
+        
         
         return false;
     }

@@ -11,7 +11,9 @@ public class subindex extends SubsystemBase{
 
     public subindex(){
     
+
         index = new CANSparkMax(indxid, MotorType.kBrushless);
+        index.setInverted(true);
     }
 
     public void setindexspeed(double indexspeed){
