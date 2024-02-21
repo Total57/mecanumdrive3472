@@ -40,7 +40,7 @@ public class subintake extends SubsystemBase {
   
     //funciones index 
 
-    public void setoutakespeed(double indexspeed){
+    public void setindexspeed(double indexspeed){
         index.set(indexspeed);
     }
    //funciones reversa
@@ -48,6 +48,10 @@ public class subintake extends SubsystemBase {
    public void reversed(){
         index.set(-0.5);
         intake.set(-0.5);
+   }
+
+   public void stop(){
+    intake.set(0);
    }
 
 

@@ -8,9 +8,12 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.Commands.comindex;
 import frc.robot.Commands.comintake;
 import frc.robot.Commands.comout;
+import frc.robot.Commands.composout;
 import frc.robot.Commands.conmecos;
 import frc.robot.Subsystems.subintake;
 import frc.robot.Subsystems.submecos;
@@ -30,12 +33,23 @@ public class RobotContainer {
                                                   constants.outakeconst.posoutid2
   );
 
+  private final suboutake posoutake = new suboutake(constants.outakeconst.outid, 
+                                                  constants.outakeconst.outid2,
+                                                  constants.outakeconst.posoutid,
+                                                  constants.outakeconst.posoutid2);
+
   private final subintake intake = new subintake(
                                                   constants.intakeconst.m_index,
                                                   constants.intakeconst.m_intake,
                                                   constants.intakeconst.sforwardchn,
                                                   constants.intakeconst.sreversedchn
   );
+
+  private final subintake index = new subintake(constants.intakeconst.m_index,
+                                                  constants.intakeconst.m_intake,
+                                                  constants.intakeconst.sforwardchn,
+                                                  constants.intakeconst.sreversedchn);
+
 
   public Joystick driverjoytick = new Joystick(0);
   public Joystick mechjoytick = new Joystick(1);
@@ -66,14 +80,33 @@ public class RobotContainer {
       
     });
 
+    outake.setDefaultCommand(new comout(outake,
+    ()-> mechjoytick.getRawAxis(3),
+    ()-> mechjoytick.getRawAxis(2) ){
+
+    });
+
+    posoutake.setDefaultCommand(new composout(posoutake,
+
+    ()-> mechjoytick.getRawAxis(1)){
+    
+    });
+
     configureBindings();
 
   }
 
   private void configureBindings() { 
-    //outake
-    MBizq.whileTrue(new comout(outake, 0.3));
-    MBder.whileTrue(new comout(outake, 0.9)); 
+
+    My.whileTrue(new InstantCommand(()-> intake.reversed()));
+    //index
+    Mx.whileTrue(new comindex(index, 0.5));
+
+    //emergencia
+    Momorgencia.whileTrue(new InstantCommand(()-> intake.stop()));
+
+   
+
     
   }
 

@@ -19,7 +19,7 @@ public class suboutake extends SubsystemBase{
     private int poutid = outakeconst.posoutid;
     private int poutid2 = outakeconst.posoutid2;
 
-    private Encoder encoderBore = new Encoder(0, 1,2);
+    private Encoder encoderBore = new Encoder(outakeconst.encoderAchannel, outakeconst.encoderBchannel,outakeconst.encoderIndchannel);
 
 
     public suboutake(int outid, int outid2, int posutid, int posutid2){

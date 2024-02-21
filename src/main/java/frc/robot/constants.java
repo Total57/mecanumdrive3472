@@ -28,6 +28,10 @@ public final class constants {
         public static final int outid2 = 8;
         public static final int posoutid = 2;
         public static final int posoutid2 =6;
+
+        public static final int encoderAchannel = 0;
+        public static final int encoderBchannel = 1;
+        public static final int encoderIndchannel = 2;
         
         //declarar puertos de encoder
 
