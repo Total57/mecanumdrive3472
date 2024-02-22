@@ -17,9 +17,7 @@ public class comintake extends Command{
 
     @Override
     public void initialize(){
-        
-        intake.pistoninit();
-        intake.intakeinit();
+        intake.velocities(0);
     }
 
     @Override
@@ -29,11 +27,16 @@ public class comintake extends Command{
     }
 
     @Override
-    public boolean isFinished(){
-        
+    public void end(boolean interrupted) {
         intake.velocities(0);
         intake.pistoninit();
-        return true;
+    }
+
+    @Override
+    public boolean isFinished(){
+        
+        
+        return false;
     }
   
 }

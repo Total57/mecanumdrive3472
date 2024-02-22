@@ -1,7 +1,5 @@
 package frc.robot.Commands;
 
-import java.util.function.Supplier;
-
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Subsystems.subindex;
 
@@ -19,7 +17,7 @@ public class comindex extends Command{
 
     @Override
     public void initialize(){
-        
+        index.setindexspeed(0);
     }
 
     @Override
@@ -29,12 +27,17 @@ public class comindex extends Command{
     }
 
     @Override
-    public boolean isFinished(){
-        
+    public void end(boolean interrupted) {
         index.setindexspeed(0);
-        return true;
     }
 
+
+    @Override
+    public boolean isFinished(){
+        
+        
+        return false;
+    }
 
     
 }
