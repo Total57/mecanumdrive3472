@@ -31,8 +31,8 @@ public class comindex extends Command{
     @Override
     public boolean isFinished(){
         
-        
-        return false;
+        index.setindexspeed(0);
+        return true;
     }
 
 

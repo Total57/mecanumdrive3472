@@ -33,7 +33,7 @@ public class comintake extends Command{
         
         intake.velocities(0);
         intake.pistoninit();
-        return false;
+        return true;
     }
   
 }
