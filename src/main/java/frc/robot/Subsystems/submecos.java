@@ -70,10 +70,10 @@ public class submecos extends SubsystemBase{
     @Override
     public void periodic(){
 
-        SmartDashboard.putNumber("Encoder Frente Izquierda", EncoderFrenteIzq.getPosition());
-        SmartDashboard.putNumber("Encoder Frente Derecha", EncoderFrenteDer.getPosition());
-        SmartDashboard.putNumber("Encoder Atras Izquierda", EncoderAtrasIzq.getPosition());
-        SmartDashboard.putNumber("Encoder Atras Derecha", EncoderAtrasDer.getPosition());
+        SmartDashboard.putNumber("Encoder Frente Izquierda", (EncoderFrenteIzq.getPosition()/9.16)*0.1524);
+        SmartDashboard.putNumber("Encoder Frente Derecha", (EncoderFrenteDer.getPosition()/9.16)*0.1524);
+        SmartDashboard.putNumber("Encoder Atras Izquierda", (EncoderAtrasIzq.getPosition()/9.16)*0.1524);
+        SmartDashboard.putNumber("Encoder Atras Derecha", (EncoderAtrasDer.getPosition()/9.16)*0.1524);
         
     }
 

@@ -7,9 +7,9 @@ import frc.robot.Subsystems.subindex;
 
 public class comindex extends Command{
     subindex index;
-    Supplier<Double> speedy;
+    Double speedy;
 
-    public comindex(subindex index, Supplier<Double> speedy){
+    public comindex(subindex index, Double speedy){
 
         this.index = index;
         this.speedy = speedy;
@@ -24,8 +24,8 @@ public class comindex extends Command{
 
     @Override
     public void execute(){
-        double holafeliz = speedy.get();
-        index.setindexspeed(holafeliz);
+        
+        index.setindexspeed(speedy);
     }
 
     @Override
