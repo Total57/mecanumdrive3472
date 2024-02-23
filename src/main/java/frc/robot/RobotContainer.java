@@ -51,7 +51,7 @@ public class RobotContainer {
     moutake.setDefaultCommand(new comout(moutake,
     ()-> mechjoytick.getRawAxis(XboxController.Axis.kRightTrigger.value),
     ()-> mechjoytick.getRawAxis(XboxController.Axis.kLeftTrigger.value), 
-    ()-> driverjoytick.getRawAxis(XboxController.Axis.kRightTrigger.value),
+    ()->  driverjoytick.getRawAxis(XboxController.Axis.kRightTrigger.value),
     ()-> driverjoytick.getRawAxis(XboxController.Axis.kLeftTrigger.value)
     ){
 

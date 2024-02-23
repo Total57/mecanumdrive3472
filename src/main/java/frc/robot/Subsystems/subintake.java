@@ -18,7 +18,7 @@ public class subintake extends SubsystemBase {
     public subintake(){
         intake = new CANSparkMax(intkid, MotorType.kBrushless);
 
-        intake.setInverted(true);
+        intake.setInverted(false);
         
     }
 

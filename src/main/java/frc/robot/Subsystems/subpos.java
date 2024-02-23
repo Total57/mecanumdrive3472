@@ -24,8 +24,8 @@ public class subpos extends SubsystemBase{
 
         while(encoderBore.getDistance()<90){
 
-            posout1.set(0.6);
-            posout2.set(0.6);
+            posout1.set(0.7);
+            posout2.set( 0.7);
 
         }
 
