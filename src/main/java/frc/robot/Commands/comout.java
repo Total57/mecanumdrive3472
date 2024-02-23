@@ -40,10 +40,10 @@ public class comout extends Command{
        
        else if (gatder < 0.001 && gatizq > 0.001 && invgatder <0.001 && invgatizq <0.001){
 
-        moutake.setoutakespeed(0.25);}
+        moutake.setoutakespeed(0.35);}
         
         else if (gatder < 0.001 && gatizq <0.001 && invgatder <0.001 && invgatizq >0.001){
-                 moutake.setoutakespeed(-0.25);}
+                 moutake.setoutakespeed(-0.35);}
 
         else if (gatder < 0.001 && gatizq <0.001 && invgatder >0.3 && invgatizq <0.001){
             moutake.setoutakespeed(-0.9);

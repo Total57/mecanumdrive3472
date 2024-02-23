@@ -18,7 +18,6 @@ public class suboutake extends SubsystemBase{
     private int outakeid2 = outakeconst.outid2;
     
 
-    private Encoder encoderBore = new Encoder(outakeconst.encoderAchannel, outakeconst.encoderBchannel,outakeconst.encoderIndchannel);
 
 
     public suboutake(){
@@ -31,9 +30,7 @@ public class suboutake extends SubsystemBase{
     @Override
     public void periodic(){
         
-        //double enc = ((encoderBore.getDistance()/4096)*360);
-        SmartDashboard.putNumber("Encoder bore Encoder Encoder externo Encoder Absoluto", encoderBore.getDistance());
-       
+        //double enc = ((encoderBore.getDistance()/4096)*360);       
         
 
     }

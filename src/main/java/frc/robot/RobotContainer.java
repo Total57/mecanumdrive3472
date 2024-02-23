@@ -77,12 +77,18 @@ public class RobotContainer {
 
     mechjoytick.x().toggleOnTrue(new comindex(index, 0.5)); 
 
-    mechjoytick.a().toggleOnTrue(new comintake(intake, 1));
+    mechjoytick.a().toggleOnTrue(new comintake(intake, 0.8));
 
     mechjoytick.y().whileTrue(new ParallelCommandGroup(new InstantCommand(()-> intake.reversed()), new comindex(index, -0.5)));
   
     mechjoytick.start().toggleOnTrue(new InstantCommand(()-> intake.stop()));
-    mechjoytick.b().toggleOnTrue(new InstantCommand(()-> intake.forward()));
+
+    mechjoytick.b().whileTrue(new InstantCommand(()-> intake.forward()));
+
+    //mechjoytick.leftBumper().onTrue(new InstantCommand(()-> subpos.angulo1()));
+
+    
+
 
     
   }
